@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { getAssociateList } from 'src/app/Store/Associate/associate.selectors';
-import { loadAssociates } from 'src/app/Store/Associate/Associate.actions';
+import { loadAssociates } from 'src/app/Store/Associate/associate.actions';
 
 @Component({
   selector: 'app-associatelisting',

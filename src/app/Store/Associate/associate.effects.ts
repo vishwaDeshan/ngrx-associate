@@ -7,7 +7,7 @@ import {
   loadAssociates,
   loadAssociatesFail,
   loadAssociatesSuccess,
-} from './Associate.actions';
+} from './associate.actions';
 import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { showAlert } from '../Common/app.actions';
 

@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { AssociateStates } from './Associate.State';
+import { AssociateStates } from './associate.state';
 import {
   addAssociatesSuccess,
   loadAssociatesFail,
   loadAssociatesSuccess,
-} from './Associate.actions';
+} from './associate.actions';
 import { state } from '@angular/animations';
 
 const _associateReducer = createReducer(

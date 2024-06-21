@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { EmailValidator, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { addAssociates } from 'src/app/Store/Associate/Associate.actions';
+import { addAssociates } from 'src/app/Store/Associate/associate.actions';
 import { Associates } from 'src/app/Store/Model/Associate.model';
 
 interface AssociatesData {
