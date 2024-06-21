@@ -109,6 +109,16 @@
       "address": "808 Birch Avenue\nLondon\nUnited Kingdom",
       "type": "SUPPLIER",
       "status": true
+    },
+    {
+      "id": 0,
+      "name": "sasa",
+      "email": "asas@gmail.com",
+      "phone": "asasasasas",
+      "address": "asasasas",
+      "type": "CUSTOMER",
+      "associategroup": "Level 1",
+      "status": true
     }
   ],
   "user": [

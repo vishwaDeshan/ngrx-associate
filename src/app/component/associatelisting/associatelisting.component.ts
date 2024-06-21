@@ -29,6 +29,7 @@ export class AssociatelistingComponent implements OnInit {
     'group',
     'type',
     'status',
+    'action',
   ];
 
   constructor(private dialog: MatDialog, private store: Store) {
@@ -49,11 +50,15 @@ export class AssociatelistingComponent implements OnInit {
     this.OpenPopup(0, 'Create Associate');
   }
 
+  EditAssociate(id: number) {}
+
+  DeleteAssociate(id: number) {}
+
   OpenPopup(code: number, title: string) {
     this.dialog.open(AddassociateComponent, {
       width: '50%',
-      enterAnimationDuration: '200ms',
-      exitAnimationDuration: '200ms',
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '500ms',
       data: {
         code: code,
         title: title,

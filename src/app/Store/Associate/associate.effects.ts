@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AssociateService } from 'src/app/component/service/associate.service';
 import {
+  addAssociates,
+  addAssociatesSuccess,
   loadAssociates,
   loadAssociatesFail,
   loadAssociatesSuccess,
 } from './Associate.actions';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
+import { showAlert } from '../Common/app.actions';
 
 @Injectable()
 export class AssociateEffects {
@@ -20,8 +23,31 @@ export class AssociateEffects {
           map((data) => {
             return loadAssociatesSuccess({ associatesList: data });
           }),
-          catchError((_error) => {
-            return of(loadAssociatesFail({ errorMessage: 'Error Occured' }));
+          catchError(() => {
+            return of(
+              showAlert({ message: 'Error occured', resultType: 'fail' })
+            );
+          })
+        );
+      })
+    )
+  );
+
+  _addAssociates = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addAssociates),
+      switchMap((action) => {
+        return this.service.CreateAssociate(action.inputData).pipe(
+          switchMap((data) => {
+            return of(
+              addAssociatesSuccess({ inputData: action.inputData }),
+              showAlert({ message: 'Created successfully', resultType: 'pass' })
+            );
+          }),
+          catchError(() => {
+            return of(
+              showAlert({ message: 'Error occured', resultType: 'fail' })
+            );
           })
         );
       })

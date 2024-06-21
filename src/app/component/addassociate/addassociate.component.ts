@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { EmailValidator, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { addAssociates } from 'src/app/Store/Associate/Associate.actions';
 import { Associates } from 'src/app/Store/Model/Associate.model';
 
 interface AssociatesData {
@@ -22,7 +23,8 @@ export class AddassociateComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private ref: MatDialogRef<AddassociateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private store: Store<{ Associate: Associates }>
   ) {}
   ngOnInit(): void {
     this.dialogData = this.data;
@@ -56,6 +58,18 @@ export class AddassociateComponent implements OnInit {
 
   SaveAssociate() {
     if (this.associateForm.valid) {
+      const _inputData: Associates = {
+        id: this.associateForm.value.id as number,
+        name: this.associateForm.value.name as string,
+        email: this.associateForm.value.email as string,
+        phone: this.associateForm.value.phone as string,
+        address: this.associateForm.value.address as string,
+        type: this.associateForm.value.type as string,
+        associategroup: this.associateForm.value.group as string,
+        status: this.associateForm.value.status as boolean,
+      };
+      this.store.dispatch(addAssociates({ inputData: _inputData }));
+      this.closePopup();
     }
   }
 }

@@ -1,6 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { AssociateStates } from './Associate.State';
-import { loadAssociatesFail, loadAssociatesSuccess } from './Associate.actions';
+import {
+  addAssociatesSuccess,
+  loadAssociatesFail,
+  loadAssociatesSuccess,
+} from './Associate.actions';
 import { state } from '@angular/animations';
 
 const _associateReducer = createReducer(
@@ -17,6 +21,16 @@ const _associateReducer = createReducer(
       ...state,
       assocaiteList: [],
       errormessage: action.errorMessage,
+    };
+  }),
+  on(addAssociatesSuccess, (state, action) => {
+    const _maxId = Math.max(...state.assocaiteList.map((item) => item.id));
+    const _newData = { ...action.inputData };
+    _newData.id = _maxId + 1;
+    return {
+      ...state,
+      assocaiteList: [...state.assocaiteList, _newData],
+      errormessage: '',
     };
   })
 );

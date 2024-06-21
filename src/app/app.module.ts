@@ -16,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { AssociateReducer } from './Store/Associate/associate.reducer';
 import { AssociateEffects } from './Store/Associate/Associate.effects';
+import { AppEffects } from './Store/Common/app.effects';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AssociateEffects } from './Store/Associate/Associate.effects';
     FormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({ associate: AssociateReducer }),
-    EffectsModule.forRoot([AssociateEffects]),
+    EffectsModule.forRoot([AssociateEffects, AppEffects]),
     //StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
