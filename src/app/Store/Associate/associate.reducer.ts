@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AssociateStates } from './associate.state';
+import { InitialAssociateStates } from './associate.state';
 import {
   addAssociatesSuccess,
   loadAssociatesFail,
@@ -8,7 +8,7 @@ import {
 import { state } from '@angular/animations';
 
 const _associateReducer = createReducer(
-  AssociateStates,
+  InitialAssociateStates,
   on(loadAssociatesSuccess, (state, action) => {
     return {
       ...state,

@@ -1,6 +1,6 @@
 import { AssociateModel } from '../Model/Associate.model';
 
-export const AssociateStates: AssociateModel = {
+export const InitialAssociateStates: AssociateModel = {
   assocaiteList: [],
   errormessage: '',
   associateobj: {
