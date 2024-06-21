@@ -1,0 +1,157 @@
+{
+  "associate": [
+    {
+      "id": 1,
+      "name": "Ramesh Kumar",
+      "email": "ramesh@in.com",
+      "phone": "899089898",
+      "associategroup": "level1",
+      "address": "No 2\nRamraj street, chennai\nIndai",
+      "type": "SUPPLIER",
+      "status": true
+    },
+    {
+      "id": 2,
+      "name": "Akbar",
+      "email": "akbar@in.com",
+      "phone": "899089898",
+      "associategroup": "level1",
+      "address": "No 2\nRamraj street, Delhi\nIndai",
+      "type": "SUPPLIER",
+      "status": true
+    },
+    {
+      "id": 5,
+      "name": "Ramesh Kumar",
+      "email": "ramesh@inc.com",
+      "phone": "899089898",
+      "associategroup": "level2",
+      "address": "No 2\nRamraj street, chennai test\nIndai",
+      "type": "SUPPLIER",
+      "status": true
+    },
+    {
+      "id": 10,
+      "name": "Natrajan",
+      "email": "nat@in.com",
+      "phone": "55566",
+      "associategroup": "level2",
+      "address": "hj",
+      "type": "SUPPLIER",
+      "status": true
+    }
+  ],
+  "user": [
+    {
+      "username": "admin",
+      "password": "admin",
+      "name": "Adminuser",
+      "email": "ad@in.com",
+      "phone": "678888",
+      "gender": "male",
+      "role": "manager",
+      "status": true,
+      "id": 1
+    },
+    {
+      "username": "testuser",
+      "password": "test",
+      "name": "NT User",
+      "email": "nt@in.com",
+      "phone": "678889999",
+      "gender": "female",
+      "role": "manager",
+      "status": true,
+      "id": 2
+    },
+    {
+      "username": "ntuser",
+      "password": "test",
+      "name": "NT User 2",
+      "email": "nt1@in.com",
+      "phone": "66888999",
+      "gender": "male",
+      "role": "admin",
+      "status": true,
+      "id": 3
+    }
+  ],
+  "role": [
+    {
+      "code": "admin",
+      "name": "Admin"
+    },
+    {
+      "code": "manager",
+      "name": "Manager"
+    },
+    {
+      "code": "user",
+      "name": "User"
+    }
+  ],
+  "menu": [
+    {
+      "code": "associate",
+      "Name": "Associate"
+    },
+    {
+      "code": "customer",
+      "Name": "Customer"
+    },
+    {
+      "code": "user",
+      "Name": "User"
+    }
+  ],
+  "roleaccess": [
+    {
+      "role": "admin",
+      "menu": "associate",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "admin",
+      "menu": "customer",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "admin",
+      "menu": "user",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "manager",
+      "menu": "associate",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "manager",
+      "menu": "customer",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true,
+      "haveview": true
+    },
+    {
+      "role": "user",
+      "menu": "associate",
+      "haveadd": true,
+      "haveedit": false,
+      "havedelete": false,
+      "haveview": true
+    }
+  ]
+}
