@@ -14,6 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { AssociateReducer } from './Store/Associate/associate.reducer';
+import { AssociateEffects } from './Store/Associate/Associate.effects';
 
 @NgModule({
   declarations: [
@@ -29,16 +31,14 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(),
-    EffectsModule.forRoot(),
+    StoreModule.forRoot({ associate: AssociateReducer }),
+    EffectsModule.forRoot([AssociateEffects]),
     //StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),
       connectInZone: true,
     }),
-    NgxMaskDirective,
-    NgxMaskPipe,
   ],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent],
