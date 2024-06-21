@@ -6,10 +6,58 @@ import { Associates } from 'src/app/Store/Model/Associate.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { getAssociateList } from 'src/app/Store/Associate/associate.selectors';
+import { loadAssociates } from 'src/app/Store/Associate/Associate.actions';
 
 @Component({
   selector: 'app-associatelisting',
   templateUrl: './associatelisting.component.html',
   styleUrls: ['./associatelisting.component.css'],
 })
-export class AssociatelistingComponent {}
+export class AssociatelistingComponent implements OnInit {
+  AssociateList!: Associates[];
+  datasource: MatTableDataSource<Associates>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  displayedColumns: string[] = [
+    'code',
+    'name',
+    'email',
+    'phone',
+    'address',
+    'group',
+    'type',
+    'status',
+  ];
+
+  constructor(private dialog: MatDialog, private store: Store) {
+    this.datasource = new MatTableDataSource<Associates>();
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(loadAssociates());
+    this.store.select(getAssociateList).subscribe((item) => {
+      this.AssociateList = item;
+      this.datasource.data = this.AssociateList;
+      this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
+    });
+  }
+
+  AddAssociate() {
+    this.OpenPopup(0, 'Create Associate');
+  }
+
+  OpenPopup(code: number, title: string) {
+    this.dialog.open(AddassociateComponent, {
+      width: '50%',
+      enterAnimationDuration: '200ms',
+      exitAnimationDuration: '200ms',
+      data: {
+        code: code,
+        title: title,
+      },
+    });
+  }
+}
