@@ -1,27 +1,27 @@
 {
   "associate": [
     {
-      "id": 1,
-      "name": "John Smith",
-      "email": "john.smith@example.co.uk",
-      "phone": "07900123456",
-      "associategroup": "Level 1",
-      "address": "123 Baker Street\nLondon\nUnited Kingdom",
-      "type": "SUPPLIER",
-      "status": true
+      "id": "1",
+      "name": "Claring Clerk",
+      "email": "claring.clerk@example.co.uk",
+      "phone": "07900789012",
+      "address": "404 Abbey Lane\nBirmingham\nUnited Kingdom",
+      "type": "CUSTOMER",
+      "associategroup": "Level 3",
+      "status": false
     },
     {
-      "id": 2,
-      "name": "Emily Brown",
+      "id": "2",
+      "name": "Emily Browns",
       "email": "emily.brown@example.co.uk",
       "phone": "07900234567",
-      "associategroup": "Level 1",
       "address": "456 High Street\nManchester\nUnited Kingdom",
       "type": "SUPPLIER",
+      "associategroup": "Level 1",
       "status": true
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "James Wilson",
       "email": "james.wilson@example.co.uk",
       "phone": "07900345678",
@@ -31,7 +31,7 @@
       "status": true
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Sophie Taylor",
       "email": "sophie.taylor@example.co.uk",
       "phone": "07900456789",
@@ -41,7 +41,7 @@
       "status": true
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Daniel Johnson",
       "email": "daniel.johnson@example.co.uk",
       "phone": "07900567890",
@@ -51,7 +51,7 @@
       "status": true
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Chloe Harris",
       "email": "chloe.harris@example.co.uk",
       "phone": "07900678901",
@@ -61,7 +61,7 @@
       "status": true
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Thomas Martin",
       "email": "thomas.martin@example.co.uk",
       "phone": "07900789012",
@@ -71,7 +71,7 @@
       "status": true
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Jessica Lee",
       "email": "jessica.lee@example.co.uk",
       "phone": "07900890123",
@@ -81,7 +81,7 @@
       "status": true
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "William Clark",
       "email": "william.clark@example.co.uk",
       "phone": "07900901234",
@@ -91,7 +91,7 @@
       "status": true
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Mia King",
       "email": "mia.king@example.co.uk",
       "phone": "07900123456",
@@ -101,22 +101,12 @@
       "status": true
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "Oliver Young",
       "email": "oliver.young@example.co.uk",
       "phone": "07900123457",
-      "associategroup": "Level 1",
       "address": "808 Birch Avenue\nLondon\nUnited Kingdom",
       "type": "SUPPLIER",
-      "status": true
-    },
-    {
-      "id": 0,
-      "name": "sasa",
-      "email": "asas@gmail.com",
-      "phone": "asasasasas",
-      "address": "asasasas",
-      "type": "CUSTOMER",
       "associategroup": "Level 1",
       "status": true
     }
@@ -131,7 +121,7 @@
       "gender": "male",
       "role": "manager",
       "status": true,
-      "id": 1
+      "id": "1"
     },
     {
       "username": "testuser",
@@ -142,7 +132,7 @@
       "gender": "female",
       "role": "manager",
       "status": true,
-      "id": 2
+      "id": "2"
     },
     {
       "username": "ntuser",
@@ -153,35 +143,41 @@
       "gender": "male",
       "role": "admin",
       "status": true,
-      "id": 3
+      "id": "3"
     }
   ],
   "role": [
     {
       "code": "admin",
-      "name": "Admin"
+      "name": "Admin",
+      "id": "8577"
     },
     {
       "code": "manager",
-      "name": "Manager"
+      "name": "Manager",
+      "id": "580b"
     },
     {
       "code": "user",
-      "name": "User"
+      "name": "User",
+      "id": "25f7"
     }
   ],
   "menu": [
     {
       "code": "associate",
-      "Name": "Associate"
+      "Name": "Associate",
+      "id": "8856"
     },
     {
       "code": "customer",
-      "Name": "Customer"
+      "Name": "Customer",
+      "id": "f317"
     },
     {
       "code": "user",
-      "Name": "User"
+      "Name": "User",
+      "id": "e619"
     }
   ],
   "roleaccess": [
@@ -191,7 +187,8 @@
       "haveadd": true,
       "haveedit": true,
       "havedelete": true,
-      "haveview": true
+      "haveview": true,
+      "id": "e4c7"
     },
     {
       "role": "admin",
@@ -199,7 +196,8 @@
       "haveadd": true,
       "haveedit": true,
       "havedelete": true,
-      "haveview": true
+      "haveview": true,
+      "id": "47ea"
     },
     {
       "role": "admin",
@@ -207,7 +205,8 @@
       "haveadd": true,
       "haveedit": true,
       "havedelete": true,
-      "haveview": true
+      "haveview": true,
+      "id": "0621"
     },
     {
       "role": "manager",
@@ -215,7 +214,8 @@
       "haveadd": true,
       "haveedit": true,
       "havedelete": true,
-      "haveview": true
+      "haveview": true,
+      "id": "6343"
     },
     {
       "role": "manager",
@@ -223,7 +223,8 @@
       "haveadd": true,
       "haveedit": true,
       "havedelete": true,
-      "haveview": true
+      "haveview": true,
+      "id": "516a"
     },
     {
       "role": "user",
@@ -231,7 +232,8 @@
       "haveadd": true,
       "haveedit": false,
       "havedelete": false,
-      "haveview": true
+      "haveview": true,
+      "id": "7f4e"
     }
   ]
 }

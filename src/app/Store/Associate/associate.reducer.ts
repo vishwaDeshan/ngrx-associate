@@ -2,8 +2,12 @@ import { createReducer, on } from '@ngrx/store';
 import { InitialAssociateStates } from './associate.state';
 import {
   addAssociatesSuccess,
+  deleteAssociateSuccess,
+  getAssociatesSuccess,
   loadAssociatesFail,
   loadAssociatesSuccess,
+  openPopup,
+  updateAssociateSuccess,
 } from './associate.actions';
 import { state } from '@angular/animations';
 
@@ -31,6 +35,37 @@ const _associateReducer = createReducer(
       ...state,
       assocaiteList: [...state.assocaiteList, _newData],
       errormessage: '',
+    };
+  }),
+  on(getAssociatesSuccess, (state, action) => {
+    return {
+      ...state,
+      associateobj: action.foundAssociate,
+      errormessage: '',
+    };
+  }),
+  on(updateAssociateSuccess, (state, action) => {
+    const _updatedData = state.assocaiteList.map((a) => {
+      return a.id === action.inputData.id ? action.inputData : a;
+    });
+    return {
+      ...state,
+      assocaiteList: _updatedData,
+      errormessage: '',
+    };
+  }),
+  on(deleteAssociateSuccess, (state, action) => {
+    const _updatedData = state.assocaiteList.filter((a) => a.id !== action.id);
+    return {
+      ...state,
+      assocaiteList: _updatedData,
+      errormessage: '',
+    };
+  }),
+  on(openPopup, (state) => {
+    return {
+      ...state,
+      associateobj: { ...InitialAssociateStates.associateobj },
     };
   })
 );

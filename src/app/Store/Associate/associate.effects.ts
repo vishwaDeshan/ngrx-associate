@@ -4,9 +4,15 @@ import { AssociateService } from 'src/app/component/service/associate.service';
 import {
   addAssociates,
   addAssociatesSuccess,
+  deleteAssociate,
+  deleteAssociateSuccess,
+  getAssociates,
+  getAssociatesSuccess,
   loadAssociates,
   loadAssociatesFail,
   loadAssociatesSuccess,
+  updateAssociate,
+  updateAssociateSuccess,
 } from './associate.actions';
 import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { showAlert } from '../Common/app.actions';
@@ -46,7 +52,79 @@ export class AssociateEffects {
           }),
           catchError(() => {
             return of(
-              showAlert({ message: 'Error occured', resultType: 'fail' })
+              showAlert({
+                message: 'Failed to create associate',
+                resultType: 'fail',
+              })
+            );
+          })
+        );
+      })
+    )
+  );
+
+  _getAssociate = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getAssociates),
+      exhaustMap((action) => {
+        return this.service.GetAssociateByCode(action.id).pipe(
+          exhaustMap((data) => {
+            return of(getAssociatesSuccess({ foundAssociate: data }));
+          }),
+          catchError(() => {
+            return of(
+              showAlert({
+                message: 'Associate can not be found',
+                resultType: 'fail',
+              })
+            );
+          })
+        );
+      })
+    )
+  );
+
+  _updateAssociate = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateAssociate),
+      switchMap((action) => {
+        return this.service.UpdateAssociate(action.inputData).pipe(
+          switchMap((data) => {
+            return of(
+              updateAssociateSuccess({ inputData: action.inputData }),
+              showAlert({ message: 'Updated successfully', resultType: 'pass' })
+            );
+          }),
+          catchError(() => {
+            return of(
+              showAlert({
+                message: 'Failed to update associate',
+                resultType: 'fail',
+              })
+            );
+          })
+        );
+      })
+    )
+  );
+
+  _deleteAssociate = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteAssociate),
+      switchMap((action) => {
+        return this.service.DeleteAssociate(action.id).pipe(
+          switchMap((data) => {
+            return of(
+              deleteAssociateSuccess({ id: action.id }),
+              showAlert({ message: 'Deleted successfully', resultType: 'pass' })
+            );
+          }),
+          catchError(() => {
+            return of(
+              showAlert({
+                message: 'Failed to deleted associate',
+                resultType: 'fail',
+              })
             );
           })
         );

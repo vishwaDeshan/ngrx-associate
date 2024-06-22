@@ -2,8 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { EmailValidator, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { addAssociates } from 'src/app/Store/Associate/associate.actions';
-import { Associates } from 'src/app/Store/Model/Associate.model';
+import {
+  addAssociates,
+  updateAssociate,
+} from 'src/app/Store/Associate/associate.actions';
+import { getAssociate } from 'src/app/Store/Associate/associate.selectors';
+import { Associate } from 'src/app/Store/Model/Associate.model';
 
 interface AssociatesData {
   id: number;
@@ -24,11 +28,24 @@ export class AddassociateComponent implements OnInit {
     private builder: FormBuilder,
     private ref: MatDialogRef<AddassociateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private store: Store<{ Associate: Associates }>
+    private store: Store<{ Associate: Associate }>
   ) {}
   ngOnInit(): void {
     this.dialogData = this.data;
     this.title = this.dialogData.title;
+    this.store.select(getAssociate);
+    this.store.select(getAssociate).subscribe((data) => {
+      this.associateForm.setValue({
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        type: data.type,
+        group: data.associategroup,
+        status: data.status,
+      });
+    });
   }
 
   closePopup() {
@@ -58,7 +75,7 @@ export class AddassociateComponent implements OnInit {
 
   SaveAssociate() {
     if (this.associateForm.valid) {
-      const _inputData: Associates = {
+      const _inputData: Associate = {
         id: this.associateForm.value.id as number,
         name: this.associateForm.value.name as string,
         email: this.associateForm.value.email as string,
@@ -68,7 +85,11 @@ export class AddassociateComponent implements OnInit {
         associategroup: this.associateForm.value.group as string,
         status: this.associateForm.value.status as boolean,
       };
-      this.store.dispatch(addAssociates({ inputData: _inputData }));
+      if (_inputData.id === 0) {
+        this.store.dispatch(addAssociates({ inputData: _inputData }));
+      } else {
+        this.store.dispatch(updateAssociate({ inputData: _inputData }));
+      }
       this.closePopup();
     }
   }

@@ -2,12 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddassociateComponent } from '../addassociate/addassociate.component';
 import { Store } from '@ngrx/store';
-import { Associates } from 'src/app/Store/Model/Associate.model';
+import { Associate } from 'src/app/Store/Model/Associate.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { getAssociateList } from 'src/app/Store/Associate/associate.selectors';
-import { loadAssociates } from 'src/app/Store/Associate/associate.actions';
+import {
+  deleteAssociate,
+  getAssociates,
+  loadAssociates,
+  openPopup,
+} from 'src/app/Store/Associate/associate.actions';
 
 @Component({
   selector: 'app-associatelisting',
@@ -15,8 +20,8 @@ import { loadAssociates } from 'src/app/Store/Associate/associate.actions';
   styleUrls: ['./associatelisting.component.css'],
 })
 export class AssociatelistingComponent implements OnInit {
-  AssociateList!: Associates[];
-  datasource: MatTableDataSource<Associates>;
+  AssociateList!: Associate[];
+  datasource: MatTableDataSource<Associate>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -33,7 +38,7 @@ export class AssociatelistingComponent implements OnInit {
   ];
 
   constructor(private dialog: MatDialog, private store: Store) {
-    this.datasource = new MatTableDataSource<Associates>();
+    this.datasource = new MatTableDataSource<Associate>();
   }
 
   ngOnInit(): void {
@@ -50,15 +55,23 @@ export class AssociatelistingComponent implements OnInit {
     this.OpenPopup(0, 'Create Associate');
   }
 
-  EditAssociate(id: number) {}
+  EditAssociate(id: number) {
+    this.OpenPopup(id, 'Update Associate');
+    this.store.dispatch(getAssociates({ id }));
+  }
 
-  DeleteAssociate(id: number) {}
+  DeleteAssociate(id: number) {
+    if (confirm('Are you sure you want to delete this record?')) {
+      this.store.dispatch(deleteAssociate({ id }));
+    }
+  }
 
   OpenPopup(code: number, title: string) {
+    this.store.dispatch(openPopup());
     this.dialog.open(AddassociateComponent, {
       width: '50%',
-      enterAnimationDuration: '500ms',
-      exitAnimationDuration: '500ms',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
       data: {
         code: code,
         title: title,

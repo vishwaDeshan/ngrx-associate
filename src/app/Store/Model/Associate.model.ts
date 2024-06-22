@@ -1,4 +1,4 @@
-export interface Associates {
+export interface Associate {
   id: number;
   name: string;
   email: string;
@@ -10,7 +10,7 @@ export interface Associates {
 }
 
 export interface AssociateModel {
-  assocaiteList: Associates[];
-  associateobj: Associates;
+  assocaiteList: Associate[];
+  associateobj: Associate;
   errormessage: string;
 }
