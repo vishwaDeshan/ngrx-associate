@@ -52,11 +52,11 @@ export class AssociatelistingComponent implements OnInit {
   }
 
   AddAssociate() {
-    this.OpenPopup(0, 'Create Associate');
+    this.OpenPopupDialog(0, 'Create Associate');
   }
 
   EditAssociate(id: number) {
-    this.OpenPopup(id, 'Update Associate');
+    this.OpenPopupDialog(id, 'Update Associate');
     this.store.dispatch(getAssociates({ id }));
   }
 
@@ -66,7 +66,7 @@ export class AssociatelistingComponent implements OnInit {
     }
   }
 
-  OpenPopup(code: number, title: string) {
+  OpenPopupDialog(code: number, title: string) {
     this.store.dispatch(openPopup());
     this.dialog.open(AddassociateComponent, {
       width: '50%',
